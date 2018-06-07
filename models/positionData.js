@@ -25,5 +25,5 @@ module.exports.storeNewData = function(data, callback){
 	PositionData.create(data,callback);
 }
 module.exports.userData = function(email, callback){
-	PositionData.find({'email': email}).exec(callback);
+	PositionData.find({'email': email}).sort({datetime: 'desc'}).exec(callback);
 }
