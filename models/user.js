@@ -21,8 +21,8 @@ var User = module.exports = mongoose.model('User', UserSchema, 'users');
 module.exports.allUsers = function(callback){
 	User.find({}).select('email').exec(callback);
 }
-module.exports.user = function(email, callback){
-	User.find({'email': email}).exec(callback);
+module.exports.user = function(data, callback){
+	User.find({'email': data.email, 'password': data.password}).exec(callback);
 }
 module.exports.createUser = function(data, callback){
 	User.create(data,callback);

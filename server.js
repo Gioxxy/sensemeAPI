@@ -34,16 +34,6 @@ router.route('/allUsers').get(function(req, res) {
     });
 });
 
-// Ritorna id, email e password di un utente
-router.route('/user/:email').get(function(req, res) {
-
-    User.user(req.params.email, function(err, user) {
-        if (err) res.send(err);
-
-        res.json(user);
-    });
-});
-
 // Ritorna id, email e positionData di un utente
 router.route('/userData/:email').get(function(req, res) {
 
@@ -70,6 +60,20 @@ router.route('/createUser').post(function(req, res) {
         if (err) res.send(err);
         
 		res.json(user);
+    });
+});
+
+//Login utente
+router.route('/login').post(function(req, res) {
+	var data = {
+		            "email": req.body.email,
+		            "password": req.body.password
+		        };
+
+    User.user(data, function(err, user) {
+        if (err) res.send(err);
+
+        res.json(user);
     });
 });
 
